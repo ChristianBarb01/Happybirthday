@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1:#f9fbff;
+    --bg2:#e8f1ff;
+    --mint:#7de0cf;
+    --teal:#2dc7b3;
+    --fondant:#fffdfc;
+    --detail:#111418;
+    --silver:#cdd6de;
+    --shadow:#00000012;
+    --accent:#ff5c88;
+    --gold:#f6c453;
+    --navy:#0b2740;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family:"Nunito",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+    color:#14202a;
+    background:
+      radial-gradient(1200px 600px at 20% -10%,#ffffff 10%,transparent 60%),
+      radial-gradient(900px 500px at 120% 10%,#ffffff 5%,transparent 60%),
+      linear-gradient(160deg,var(--bg1),var(--bg2));
+    overflow-x:hidden;
+  }
+
+  /* Decoración del fondo: cruces y corazones flotantes */
+  .float{
+    position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0;
+  }
+  .float i{
+    position:absolute; font-style:normal; opacity:.15; animation:rise 12s linear infinite;
+    user-select:none;
+  }
+  .float i:nth-child(odd){opacity:.1}
+  @keyframes rise{
+    from{transform:translateY(100vh) rotate(0deg)}
+    to  {transform:translateY(-20vh) rotate(360deg)}
+  }
+
+  /* Contenido principal */
+  .wrap{
+    position:relative; z-index:1; min-height:80%;
+    display:grid; place-items:center; padding:56px 16px 70px;
+  }
+
+  h1{
+    font-family:"Pacifico",cursive;
+    font-size:clamp(32px,6vw,64px);
+    margin:0 0 10px; text-align:center;
+    color:var(--accent); letter-spacing:.5px;
+    text-shadow:0 6px 20px var(--shadow), 0 1px 0 #fff;
+  }
+  .sub{
+    text-align:center; margin:0 0 28px; font-weight:700; color:#355; letter-spacing:.4px
+  }
+
+
+  /* Pastel */
+  .stage{position:relative; width:min(88vw,520px); aspect-ratio:1/1; display:grid; place-items:center; perspective:900px;}
+  .plate{position:absolute; width:92%; height:92%; border-radius:50%; background:#fef6d6; box-shadow:0 10px 25px var(--shadow); transform:translateZ(-10px);}
+  .cake{position:relative; width:78%; height:78%; border-radius:50%; background:var(--fondant); box-shadow:0 14px 26px var(--shadow), inset 0 -10px 20px #0000000e; display:grid; place-items:center;}
+
+  /* Imagen en el centro */
+  .cake img{
+    width:45%;
+    height:auto;
+    border-radius:50%;
+    border:5px solid white;
+    box-shadow:0 0 12px rgba(0,0,0,.25);
+  }
+
+  /* Merengue alrededor */
+  .merengue{
+    position:absolute; inset:0;
+    display:flex; justify-content:center; align-items:center;
+    flex-wrap:wrap; pointer-events:none;
+  }
+  .merengue span{
+    position:absolute;
+    width:38px; height:38px;
+    background:radial-gradient(circle at top left, #fff, #ffccdd);
+    border-radius:50%;
+    box-shadow:inset -2px -2px 5px rgba(0,0,0,0.1);
+  }
+  /* colocamos merengues en círculo */
+  .merengue span:nth-child(1){top:-10px; left:50%; transform:translateX(-50%);}
+  .merengue span:nth-child(2){right:-10px; top:50%; transform:translateY(-50%);}
+  .merengue span:nth-child(3){bottom:-10px; left:50%; transform:translateX(-50%);}
+  .merengue span:nth-child(4){left:-10px; top:50%; transform:translateY(-50%);}
+  .merengue span:nth-child(5){top:15%; left:8%;}
+  .merengue span:nth-child(6){top:15%; right:8%;}
+  .merengue span:nth-child(7){bottom:15%; left:8%;}
+  .merengue span:nth-child(8){bottom:15%; right:8%;}
+
+  /* Placa con el nombre */
+  .badge{
+    position:absolute; right:35%; bottom:22%;
+    background:#ffffff; border:2px solid #ecf0f3; border-radius:6px;
+    padding:8px 10px; font-size:12px; line-height:1.1; color:#2a3240;
+    transform:rotate(-2deg);
+    box-shadow:0 2px 0 #fff, 0 6px 12px var(--shadow);
+  }
+  .badge::before{
+    content:"+"; color:#e63946; font-weight:900; margin-right:6px;
+  }
+
+    /* velas */
+  .candles {
+  position:absolute;
+  top:15%;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:12px;
+  z-index:2;
+}
+
+.candle-num {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.number {
+  font-size:80px;       /* tamaño del número */
+  font-weight:900;
+  color:#fff;
+  position:relative;
+  -webkit-text-stroke:4px #ff5c88; /* contorno tipo vela */
+  background: repeating-linear-gradient(
+    45deg,
+    #ff5c88 0 6px,
+    #ffd5e3 6px 12px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wick {
+  width:2px;
+  height:12px;
+  background:#f95d5d;
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:1px;
+  z-index:3;
+}
+
+.flame {
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:18px;
+  height:36px;
+  border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 40% 30%, #fff7c8, #eca33e 60%, #ff7700 90%);
+  filter:blur(.3px) drop-shadow(0 0 8px #ffb300);
+  animation:flicker .15s infinite alternate ease-in-out;
+  z-index:4;
+}
+
+@keyframes flicker {
+  from { transform:translateX(-50%) scale(1) rotate(-2deg); }
+  to { transform:translateX(-50%) scale(1.1) rotate(2deg); }
+}
+
+  /* Mensaje en el borde del pastel */
+  .greeting{
+    position:absolute; bottom:-8%; left:50%; transform:translateX(-50%);
+    font-family:"Pacifico",cursive; font-size:clamp(10px,2.4vw,25px);
+    color:var(--navy);
+    text-shadow:0 1px 0 #fff, 0 10px 20px var(--shadow);
+    white-space:nowrap;
+  }
+
+  /* ECG */
+  .ecg-wrap{
+    position:absolute; top:-28px; width:84%; left:8%;
+  }
+  svg.ecg{width:100%; height:70px; overflow:visible}
+  .ecg path{
+    stroke:var(--teal); stroke-width:3.5; fill:none;
+    filter:drop-shadow(0 2px 0 #fff);
+    stroke-dasharray:700; stroke-dashoffset:700; animation:draw 4s linear infinite;
+  }
+  @keyframes draw{
+    to{ stroke-dashoffset:0 }
+  }
+
+  /* Botoncitos */
+  .actions{
+    margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+  }
+  button{
+    border:none; padding:12px 16px; border-radius:999px; font-weight:800; letter-spacing:.3px;
+    background:linear-gradient(180deg,#ffffff,#f2f6ff); color:#0d2a43; cursor:pointer;
+    box-shadow:0 10px 18px var(--shadow), inset 0 0 0 1px #eaf0ff;
+    transition:transform .08s ease, box-shadow .2s ease;
+  }
+  button:hover{ transform:translateY(-2px) }
+  button:active{ transform:translateY(0); box-shadow:0 3px 10px var(--shadow), inset 0 0 0 1px #eaf0ff }
+
+  /* Indicaciones */
+  .hint{ margin-top:10px; font-size:13px; color:#506070; text-align:center }
+
+  /* Confeti */
+  .confetti{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:3 }
+  .confetti i{
+    position:absolute; width:10px; height:14px; border-radius:2px; opacity:.95;
+    animation:drop var(--dur) linear forwards;
+    transform:translate3d(var(--x,0),-10vh,0) rotate(var(--rot,0deg));
+  }
+  @keyframes drop{
+    to{ transform:translate3d(var(--xend,0),110vh,0) rotate(var(--rotEnd,360deg)) }
+  }
+  .music {
+  margin: 30px auto;
+  max-width: 300px;
+
+  text-align: center;
+}
+
+  /* Pie de page */
+  footer{ text-align:center; font-size:12px; color:#6b7a90; margin-top:28px }
+</style>
+</head>
+<body>
+
+<!-- Iconos flotantes -->
+<div class="float" aria-hidden="true"></div>
+
+<div class="wrap">
+  <div>
+    <h1>¡Feliz Cumpleaños Vero!</h1>
+    <p class="sub">Quiero desearte un feliz cumpleaños, aunque sea desde la distancia. 
+        Espero que encuentres la felicidad que mereces.</p>
+  </div>
+<!-- Iframe invisible -->
+<iframe id="scPlayer" width="0" height="0" scrolling="no" frameborder="no" allow="autoplay"
+  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2165516076&auto_play=false">
+</iframe>
+
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+  const iframeElement = document.getElementById('scPlayer');
+  const widget = SC.Widget(iframeElement);
+  const btn = document.getElementById('playSong');
+
+  btn.addEventListener('click', () => {
+    widget.play();
+    btn.disabled = true; // desactiva el botón si quieres
+  });
+</script>
+
+
+  
+  <div class="stage" id="stage">
+    <div class="plate"></div>
+    <div class="cake">
+      <!-- Imagen en el centro -->
+      <img src="https://i.pinimg.com/1200x/34/f7/7b/34f77bdaf8498cb67e57bc4b4893b5a5.jpg" alt="Foto">
+
+      <!-- Merengue decorativo -->
+      <div class="merengue">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+      <div class="badge">Dra. Verónica Naula</div>
+
+    <!-- Velas números -->
+    <div class="candles">
+        <div class="candle-num">
+          <span class="number">2</span>
+          <div class="wick"></div>
+          <span class="flame"></span>
+        </div>
+        <div class="candle-num">
+          <span class="number">7</span>
+          <div class="wick"></div>
+          <span class="flame"></span>
+        </div>
+      </div>
+      
+      <div class="greeting">Cada dia mas señora</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="btnConfetti">🎉 ¡Celebrar!</button>
+    <button id="btnCandles">🕯 Pide un deseo</button>
+  </div>
+  <p class="hint">Toca el botón “Celebrar” para reproducir la canción. “Pide un deseo” apaga/enciende las velas.</p>
+
+  <footer>Con mucho cariño C💓</footer>
+</div>
+
+<!-- Confeti -->
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ---------- Iconos flotantes ---------- */
+  (function makeFloaters(){
+    const host = document.querySelector('.float');
+    const icons = ['🎂','🎈','🎊','🎁','💐','💓','🎊','🎁','🎂','🎈','💐','💓'];
+    for(let i=0;i<24;i++){
+      const el = document.createElement('i');
+      el.textContent = icons[i%icons.length];
+      const size = 18 + Math.random()*22;
+      el.style.fontSize = size + 'px';
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.animationDuration = (10 + Math.random()*8) + 's';
+      el.style.animationDelay = (-Math.random()*10) + 's';
+      host.appendChild(el);
+    }
+  })();
+
+  /* ------------------------------ Confeti ------------------------------ */
+  function launchConfetti(amount=200){
+    const box = document.getElementById('confetti');
+    for (let i=0;i<amount;i++){
+      const p = document.createElement('i');
+      const hue = Math.floor(Math.random()*360);
+      p.style.background = `hsl(${hue}, 90%, 60%)`;
+      const x = Math.random()*100;
+      const xEnd = x + (Math.random()*20-10);
+      p.style.setProperty('--x', x+'vw');
+      p.style.setProperty('--xend', xEnd+'vw');
+      p.style.setProperty('--rot', (Math.random()*180-90)+'deg');
+      p.style.setProperty('--rotEnd', (Math.random()*540-270)+'deg');
+      p.style.setProperty('--dur', (6+Math.random()*3)+'s');
+      box.appendChild(p);
+      p.addEventListener('animationend', ()=> p.remove());
+    }
+  }
+//   document.getElementById('btnConfetti').addEventListener('click', ()=> launchConfetti());
+// Suponiendo que ya tienes definido el reproductor de SoundCloud como widget
+const iframeElement = document.getElementById('scPlayer');
+const widget = SC.Widget(iframeElement);
+
+document.getElementById('btnConfetti').addEventListener('click', () => {
+    widget.play();      // reproduce la canción
+});
+
+/* Velas + confeti */
+const btnCandles = document.getElementById('btnCandles');
+btnCandles.addEventListener('click', () => {
+  const flames = document.querySelectorAll('.flame');
+  const anyVisible = Array.from(flames).some(f => f.style.display !== 'none');
+
+  if (anyVisible) {
+    // Velas encendidas → se apagan
+    flames.forEach(f => f.style.display = 'none');
+    btnCandles.textContent = '🕯 Encender velas';
+    launchConfetti(200);  // confeti
+    widget.pause();       // pausa la música
+  } else {
+    // Velas apagadas → se encienden
+    flames.forEach(f => f.style.display = 'block');
+    btnCandles.textContent = '🕯 Soplar velas';
+    widget.play();        // reproduce la música
+  }
+});
+
+
+});
+</script>
+</body>
+</html>
