@@ -263,15 +263,15 @@
           <span class="flame"></span>
         </div>
       </div>
-      <div class="greeting">Cada dia mas señora</div>
+      <div class="greeting">Pide un deseo</div>
     </div>
   </div>
   <div class="actions">
     <button id="btnConfetti">🎉 ¡Celebrar!</button>
-    <button id="btnCandles">🕯 Pide un deseo</button>
+    <button id="btnCandles">🕯 Soplar velas</button>
   </div>
-  <p class="hint">Toca el botón “Celebrar” para reproducir la canción. “Pide un deseo” apaga/enciende las velas.</p>
-  <footer>Con mucho cariño C💓</footer>
+  <p class="hint">Toca el botón “Celebrar” para reproducir la canción. “Soplar velas” apaga/enciende las velas.</p>
+  <footer>Con mucho cariño. C💓</footer>
 </div>
 <div class="confetti" id="confetti" aria-hidden="true"></div>
 <script>
@@ -327,7 +327,7 @@ btnCandles.addEventListener('click', () => {
     widget.pause(); 
   } else {
     flames.forEach(f => f.style.display = 'block');
-    btnCandles.textContent = '🕯 Pide un deseo';
+    btnCandles.textContent = '🕯 Soplar velas';
     widget.play();
   }
 });
@@ -336,4 +336,5 @@ btnCandles.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
